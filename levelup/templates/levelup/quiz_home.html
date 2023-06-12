@@ -1,0 +1,71 @@
+{% extends "levelup/base.html" %}
+
+{% block content %}
+<div class="container position-relative" style="top: -10px; left: 0px;" role="main">
+
+<!--  <div class="position-absolute" style="top: 0px; left: 525px;"> -->
+  <div class="row position-relative" style="top: -10px; left: 0px;">
+        <div class="form-group row position-relative" style="top: 0px; left: 0px;">
+
+          <div class="container text-center">  
+            <label class="h2" id="title">LevelUp Series</label>
+          </div>
+          <form action="/quiz/" id="newform" method="POST">  
+
+            {% csrf_token %}            
+            <br>
+            <div class = "d-flex justify-content-center mb-4">
+                <label class="h5" id="quest"> {{ Question_No }}. </label> &nbsp;&nbsp; 
+                <label class="h5 text-wrap" id="quest"> {{ Question }} </label>
+            </div>
+
+            <div class="btn-group-vertical gap-3 align-content-center" data-toggle="buttons-radio" style = "display: flex; align-items: center;">
+              {% for key, value in quizset_options.items %}
+                   <input type="radio" class="btn-check"  name="vbtn-radio" id="{{ key }}" autocomplete="off"  value="{{ value }}">
+                   <label class="btn btn-outline-warning rounded text-dark" style="height:35px; width:650px;" for="{{ key }}"> {{ value }} </label>
+              {% endfor %}
+<!--          <input type="radio" class="btn-check"  name="vbtn-radio" id="vbtn-radio-2" autocomplete="off" value="{{ Option_2 }}"  >
+              <label class="btn btn-outline-warning rounded text-dark" for="vbtn-radio-2"> {{ Option_2 }} </label>
+          
+              <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio-3" autocomplete="off" value="{{ Option_3 }}"  >
+              <label class="btn btn-outline-warning rounded text-dark" for="vbtn-radio-3"> {{ Option_3 }} </label>
+
+              <input type="radio" class="btn-check"  name="vbtn-radio" id="vbtn-radio-4" autocomplete="off" value="{{ Option_4 }}"  >
+              <label class="btn btn-outline-warning rounded text-dark" for="vbtn-radio-4"> {{ Option_4 }} </label>
+-->              
+            </div> 
+            <br>
+            <div class = "col-sm-12 text-center">
+              <input type="submit" class="btn btn-orange" style="margin-right: 80px;width:80px;" id="button1" name="submit_btn" value="Submit"/>
+              <input type="submit" class="btn btn-orange" style="width:80px;" id="button3" name="next_btn" value="Next"/>
+            </div>  
+            <br>
+            <div class = "col-sm-12 text-center">
+              <label class="h6 form-control-plaintext" id="reason_label"> Answer / Reason </label>
+              <textarea readonly fixedwidth border:none class="form-control position-absolute" style="background-color: white;overflow:auto;resize:none; height:70px; left: 335px; width:645px;" rows="3" id="textArea1" name="reason"> </textarea>
+            </div>    
+
+          </form>
+
+        </div>
+  </div> 
+</div>
+<!--      
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+    {% endfor %}
+{% endif %}
+
+
+{% if messages %}
+
+  {% for message in messages %}
+    <script>
+        alert('{{message}}')
+    </script>      
+  {% endfor %}
+  
+{% endif %}
+-->
+{% endblock %}  

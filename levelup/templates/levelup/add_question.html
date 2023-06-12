@@ -1,0 +1,184 @@
+{% extends "levelup/base.html" %}
+
+{% block content %}
+
+
+<div class="row justify-content-center mt-3">
+    <div class="col-md-5">
+        <h2><center>Add Question</center></h2>
+    </div>
+</div>
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-5">
+<!--
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+-->        
+        <form method="POST">
+            {% csrf_token %}
+<!--
+            <div class="form-group" style = "display:flex; flex-direction: row; justify-content: center; align-items: center">
+                <label for="question">Domain</label> &nbsp;&nbsp;
+                <input type="text" name="nm_domain" class="form-control" id="question" aria-describedby="domain_name">
+            </div>
+            <br>
+--> 
+            <div class="btn-group me-2" role="group" style = "display:flex-shrink;flex-direction: row; justify-content: center; align-items: center">
+                <label for="label_domain"> <b> Domain Name </b> </label> &nbsp;&nbsp;
+                <button id="domainDrop1" type="button" class="btn dropdown-toggle" style="height:35px; width:160px;" data-bs-toggle="dropdown" aria-expanded="false" onclick="getOption()">
+                    <span id="selected_domain">N/A</span>
+                </button>
+                <ul class="dropdown-menu" id="id_ddm_domain" aria-labelledby="domainDrop1">
+                  <li><a class="dropdown-item" href="#">Merchant Boarding</a></li>
+                  <li><a class="dropdown-item" href="#">Gateway Services</a></li>
+                  <li><a class="dropdown-item" href="#">Switching</a></li>
+                  <li><a class="dropdown-item" href="#">Dispute Processing</a></li>
+                  <li><a class="dropdown-item" href="#">N/A</a></li>
+                </ul>
+            </div>
+
+            <div class="btn-group me-2" role="group" style = "display:flex-shrink;flex-direction: row; justify-content: center; align-items: center">
+                <label for="label_technology"> (OR)  <b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Technology Name </b> </label> &nbsp;
+                <button id="technologyDrop1" type="button" class="btn dropdown-toggle" style="height:35px; width:170px;" data-bs-toggle="dropdown" aria-expanded="false" onclick="getOption()">
+                    <span id="selected_technology">N/A</span>
+                </button>
+                <ul class="dropdown-menu" id="id_ddm_technology" aria-labelledby="technologyDrop1">
+                  <li><a class="dropdown-item" href="#">Java</a></li>
+                  <li><a class="dropdown-item" href="#">Python</a></li>
+                  <li><a class="dropdown-item" href="#">Database/RDBMS</a></li>
+                  <li><a class="dropdown-item" href="#">Kafka</a></li>
+                  <li><a class="dropdown-item" href="#">Snowflake</a></li>
+                  <li><a class="dropdown-item" href="#">AWS</a></li>
+                  <li><a class="dropdown-item" href="#">Cobol</a></li>
+                  <li><a class="dropdown-item" href="#">N/A</a></li>
+                </ul>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="form-group" style = "display:flex; flex-direction: row; justify-content: center; align-items: center">
+                <label for="question"><b>Question</b></label> &nbsp;&nbsp;
+                <input type="text" name="question_1" class="form-control" id="question" aria-describedby="questiontoask">
+            </div>
+
+            <br>
+
+            <div class="form-group" style = "display:flex; flex-direction: row; justify-content: left; align-items: center">
+                <label>First 2 options are Mandatory, rest are optional</label> &nbsp;&nbsp;
+            </div>
+            
+            <br>
+<!--
+            <div class="btn-group me-2" role="group" style = "display:flex-shrink;flex-direction: row; justify-content: center; align-items: center">
+                <label for="question">No. of Answers/options</label> &nbsp;&nbsp;
+                <button id="btnGroupDrop1" type="button" class="btn btn-warning dropdown-toggle" style="height:35px; width:50px;" data-bs-toggle="dropdown" aria-expanded="false" onclick="getOption()">
+                    <span id="selected">4</span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  <li><a class="dropdown-item" href="#">2</a></li>
+                  <li><a class="dropdown-item" href="#">3</a></li>
+                  <li><a class="dropdown-item" href="#">4</a></li>
+                </ul>
+            </div>
+-->            
+           
+            <div class="input-group mb-3" style = "justify-content: center;">
+                <span class="input-group-text" id="inputGroup-sizing-default"><b>Option_1</b></span>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3" style = "justify-content: center;">
+                <span class="input-group-text" id="inputGroup-sizing-default"><b>Option_2</b></span>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3" style = "justify-content: center;">
+                <span class="input-group-text" id="inputGroup-sizing-default"><b>Option_3</b></span>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3" style = "justify-content: center;">
+                <span class="input-group-text" id="inputGroup-sizing-default"><b>Option_4</b></span>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>            
+
+
+            <div class="btn-group me-2" role="group" style = "display:flex-shrink;flex-direction: row; justify-content: center; align-items: center">
+                <label for="options"><b>Answer</b></label> &nbsp;&nbsp;
+                <button id="optionsGroupDrop1" type="button" class="btn dropdown-toggle" style="height:35px; width:100px;" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span id="selected_answer">Option_1</span>
+                </button>
+                <ul class="dropdown-menu" id="id_ddm_option" aria-labelledby="optionsGroupDrop1">
+                  <li><a class="dropdown-item" href="#">Option_1</a></li>
+                  <li><a class="dropdown-item" href="#">Option_2</a></li>
+                  <li><a class="dropdown-item" href="#">Option_3</a></li>
+                  <li><a class="dropdown-item" href="#">Option_4</a></li>
+                </ul>
+            </div>
+
+            <div class="btn-group me-2" role="group" style = "display:flex-shrink;flex-direction: row; justify-content: center; align-items: center">
+                &nbsp;&nbsp;&nbsp;&nbsp;<label for="complexity"><b>Complexity</b></label> &nbsp;&nbsp;
+                <button id="complexityDrop1" type="button" class="btn dropdown-toggle" style="height:35px; width:100px;" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span id="selected_complexity">Easy</span>
+                </button>
+                <ul class="dropdown-menu" id="id_ddm_complexity" aria-labelledby="complexityDrop1">
+                  <li><a class="dropdown-item" href="#">Easy</a></li>
+                  <li><a class="dropdown-item" href="#">Medium</a></li>
+                  <li><a class="dropdown-item" href="#">Complex</a></li>
+                </ul>
+            </div>
+
+            <br>
+            <br>
+            <br>
+            <div class="container">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-orange text-center">Add Question</button>
+                </div>
+            </div>        
+        </form>
+        
+    </div>
+</div>
+
+<script>
+  $('#id_ddm_domain a').click(function(){
+    $('#selected_domain').text($(this).text());
+  });
+</script>
+
+<script>
+    $('#id_ddm_technology a').click(function(){
+      $('#selected_technology').text($(this).text());
+    });
+  </script>
+
+<script>
+    $('#id_ddm_option a').click(function(){
+      $('#selected_answer').text($(this).text());
+    });
+</script>
+
+
+<script>
+    $('#id_ddm_complexity a').click(function(){
+      $('#selected_complexity').text($(this).text());
+    });
+</script>
+
+<script type="text/javascript">
+    function getOption() {
+
+        newRowAdd =
+            '<div id="row"> <div class="input-group m-3" style="justify-content: center;">' +
+            '<span class="input-group-text" id="inputGroup-sizing-default">Option_1</span>' +   
+            '<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"> </div>' ;
+
+        $('#newinput').append(newRowAdd);
+    }
+</script>
+
+{% endblock %}
+

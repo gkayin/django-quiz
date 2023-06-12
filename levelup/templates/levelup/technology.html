@@ -1,0 +1,52 @@
+{% extends "levelup/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<ul class="nav nav-pills justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'domain' %}">Domain</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{% url 'technology' %}">Technology</a>
+    </li>
+</ul>
+  
+  <br>
+  <br>
+  <div class="row row-cols-4 row-cols-md-4 g-4 mx-auto" style="left: 50px; width: 55rem;">
+    <div class="col">
+      <div class="card h-100 shadow-lg cards" data-mdb-ripple-color="light">
+        <img src="{% static 'levelup/java.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h6 class="card-title text-center">Java</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 shadow-lg cards">
+        <img src="{% static 'levelup/database.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h6 class="card-title text-center">Database</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 shadow-lg cards">
+        <img src="{% static 'levelup/kafka1.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h6 class="card-title text-center">Kafka</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 shadow-lg cards">
+        <img src="{% static 'levelup/testing.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h6 class="card-title text-center">Testing</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {% endblock %} 
